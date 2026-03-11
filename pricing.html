@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>monday AI Pricing - monday.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: #000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            background: #000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6161FF;
+        }
+
+        .cta-button {
+            background: #6161FF;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #4A4AE8;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #000;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6161FF 0%, #FF6B9D 100%);
+            z-index: -1;
+        }
+
+        .hero-content::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #6161FF 0%, #FF6B9D 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 0;
+            opacity: 0.95;
+            color: white;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(97, 97, 255, 0.15);
+        }
+
+        .pricing-card.featured {
+            border-color: #6161FF;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6161FF;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .pricing-card.free {
+            border-color: #DED4FC;
+        }
+
+        .pricing-card.custom {
+            border-color: #2E19AA;
+            grid-column: 1 / -1;
+        }
+
+        .pricing-card.custom .plan-features {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .pricing-card.custom .plan-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-description {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            min-height: 3rem;
+        }
+
+        .plan-price {
+            margin-bottom: 2rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6161FF;
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .price-free {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6161FF;
+            line-height: 1;
+        }
+
+        .price-custom {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2E19AA;
+            line-height: 1;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.75rem 0;
+            color: #333;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #6161FF;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .plan-button {
+            width: 100%;
+            background: #6161FF;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .plan-button:hover {
+            background: #4A4AE8;
+            transform: translateY(-2px);
+        }
+
+        .plan-button.secondary {
+            background: white;
+            color: #6161FF;
+            border: 2px solid #6161FF;
+        }
+
+        .plan-button.secondary:hover {
+            background: #f8f9fa;
+        }
+
+        .plan-button.custom-btn {
+            background: #2E19AA;
+        }
+
+        .plan-button.custom-btn:hover {
+            background: #1E0F7A;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #DED4FC;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-left: 4px solid #6161FF;
+        }
+
+        .info-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .info-box p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box strong {
+            color: #333;
+        }
+
+        /* Product Section */
+        .product-section {
+            margin-bottom: 5rem;
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6161FF 0%, #97AEFF 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .product-logo {
+            height: 60px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .sidekick-logo {
+            height: 48px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Sidekick Specific Styles */
+        .sidekick-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tier-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 2px solid #DED4FC;
+        }
+
+        .tier-card.plus {
+            border-color: #6161FF;
+        }
+
+        .tier-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            background: #DED4FC;
+            color: #6161FF;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .tier-badge.plus {
+            background: #6161FF;
+            color: white;
+        }
+
+        .tier-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6161FF;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-features {
+            list-style: none;
+        }
+
+        .tier-features li {
+            padding: 0.5rem 0;
+            color: #333;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .tier-features li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #6161FF;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.custom {
+                grid-column: 1;
+            }
+
+            .pricing-card.custom .plan-features {
+                grid-template-columns: 1fr;
+            }
+
+            .sidekick-tiers {
+                grid-template-columns: 1fr;
+            }
+
+            .product-logo {
+                height: 45px;
+            }
+
+            .sidekick-logo {
+                height: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#vibe">monday vibe</a></li>
+                <li><a href="#sidekick">monday sidekick</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>monday AI pricing</h1>
+            <p>Choose the plan that scales with your team's needs</p>
+        </div>
+    </section>
+
+    <!-- monday vibe Pricing -->
+    <section id="vibe" class="product-section">
+        <div class="container">
+            <div class="product-header">
+                <div>
+                    <img src="monday-vibe-logo.png" alt="monday vibe" class="product-logo">
+                    <p class="section-subtitle" style="text-align: left; margin-bottom: 0;">Build any business software in minutes</p>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card free">
+                    <div class="plan-name">Free</div>
+                    <div class="plan-description">Experiment with building apps and testing ideas</div>
+                    <div class="plan-price">
+                        <div class="price-free">Free</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Build and test apps</li>
+                        <li>Experiment with ideas</li>
+                        <li>No credit card required</li>
+                    </ul>
+                </div>
+
+                <!-- Starter Plan -->
+                <div class="pricing-card">
+                    <div class="plan-name">Starter</div>
+                    <div class="plan-description">Perfect for small teams getting started</div>
+                    <div class="plan-price">
+                        <div class="price-amount">$100</div>
+                        <div class="price-period">per month billed annually</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Share with your team</li>
+                        <li>10 active apps</li>
+                        <li>All core features</li>
+                        <li>Standard support</li>
+                    </ul>
+                </div>
+
+                <!-- Growth Plan -->
+                <div class="pricing-card featured">
+                    <div class="plan-name">Growth</div>
+                    <div class="plan-description">Scale your app building across teams</div>
+                    <div class="plan-price">
+                        <div class="price-amount">$250</div>
+                        <div class="price-period">per month billed annually</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>25 active apps</li>
+                        <li>Advanced features</li>
+                        <li>Priority support</li>
+                        <li>Team collaboration</li>
+                    </ul>
+                </div>
+
+                <!-- Custom Plan -->
+                <div class="pricing-card custom">
+                    <div class="plan-name">Custom</div>
+                    <div class="plan-description">For complex apps at scale with advanced security, permissions and governance</div>
+                    <ul class="plan-features">
+                        <li>Unlimited active apps</li>
+                        <li>Advanced security & governance</li>
+                        <li>Custom permissions</li>
+                        <li>Dedicated support</li>
+                        <li>Enterprise features</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>Advanced AI Features</h3>
+                <p>You can also use advanced AI features within Vibe including integrations and automations by consuming AI credits.</p>
+                <p><strong>Vibe apps will consume 8 credits per AI action.</strong></p>
+                <p><strong>8 credits = $0.08</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- monday sidekick Pricing -->
+    <section id="sidekick" class="product-section" style="background: #f8f9fa; padding: 5rem 0;">
+        <div class="container">
+            <div class="product-header">
+                <div>
+                    <img src="monday-sidekick-logo-new.png" alt="monday sidekick" class="sidekick-logo">
+                    <p class="section-subtitle" style="text-align: left; margin-bottom: 0;">Your built-in AI assistant that thinks, recommends, and runs work for you</p>
+                </div>
+            </div>
+
+            <div class="sidekick-tiers">
+                <!-- Sidekick Lite -->
+                <div class="tier-card">
+                    <div class="tier-name">Sidekick Lite</div>
+                    <div class="tier-badge">Included with Standard & Pro</div>
+                    <div class="tier-price">Free</div>
+                    <ul class="tier-features">
+                        <li>Up to 5 messages or actions per user per day</li>
+                        <li>Works within a single workspace at a time</li>
+                        <li>Interact only with boards and assets from current workspace</li>
+                        <li>Daily usage allowance resets every day</li>
+                    </ul>
+                </div>
+
+                <!-- Sidekick Plus -->
+                <div class="tier-card plus">
+                    <div class="tier-name">Sidekick Plus</div>
+                    <div class="tier-badge plus">Free for Enterprise • Available for Standard & Pro</div>
+                    <div class="tier-price">$10 per seat per month</div>
+                    <ul class="tier-features">
+                        <li>Up to 100 messages per user per day</li>
+                        <li>Up to 2 generated images or videos per day</li>
+                        <li>Account-wide context access</li>
+                        <li>Reference and act on work across your entire account</li>
+                        <li>High limits designed for everyday workflows</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #DED4FC;">
+                        <p style="color: #666; font-size: 0.875rem;"><strong>Note:</strong> The Basic plan does not support purchasing Sidekick Plus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
