@@ -1,0 +1,24 @@
+═══════════════════════════════════════════════════════════════
+  DEPLOY YOUR PRICING PAGE IN 2 MINUTES - NO ACCOUNT NEEDED
+═══════════════════════════════════════════════════════════════
+
+STEP 1: Open Netlify Drop
+   → Go to: https://app.netlify.com/drop
+
+STEP 2: Drag Your Folder
+   → Open File Explorer
+   → Navigate to: C:\Users\TamarGal\Documents\New Project
+   → Drag the ENTIRE "New Project" folder onto the Netlify page
+
+STEP 3: Get Your URL
+   → Wait 10-20 seconds
+   → You'll see a URL like: https://amazing-name-12345.netlify.app
+   → Copy this URL - it's your live site!
+
+STEP 4: Access Your Site
+   → Your pricing page will be at: YOUR-URL.netlify.app/pricing.html
+   → Or rename pricing.html to index.html to make it the homepage
+
+That's it! Your site is now live and publicly accessible.
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,27 @@
+QUICK DEPLOYMENT INSTRUCTIONS
+==============================
+
+OPTION 1: Netlify Drop (Easiest - 2 minutes)
+--------------------------------------------
+1. Open your web browser
+2. Go to: https://app.netlify.com/drop
+3. Open File Explorer and navigate to: C:\Users\TamarGal\Documents\New Project
+4. Drag the ENTIRE folder onto the Netlify Drop page
+5. Wait a few seconds - you'll get a URL like: https://random-name-123.netlify.app
+6. Copy and share that URL!
+
+Your site will be live immediately and publicly accessible.
+
+OPTION 2: Vercel (Also Easy)
+-----------------------------
+1. Go to: https://vercel.com
+2. Sign up (free, can use GitHub or email)
+3. Click "Add New Project"
+4. Drag and drop your "New Project" folder
+5. Get instant URL
+
+IMPORTANT: Make sure all these files are in the folder:
+- pricing.html
+- monday-vibe-logo.png
+- monday-sidekick-logo-new.png
+- Any other image files referenced

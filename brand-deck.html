@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>monday.com × Anthropic - Partnership Initiatives</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 4rem 5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #000;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-header {
+            margin-bottom: 3rem;
+        }
+
+        .slide-number {
+            font-size: 0.875rem;
+            color: #999;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #6161FF 0%, #FF6B9D 100%);
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title-slide h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 400;
+        }
+
+        /* Content Slides */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(97, 97, 255, 0.3);
+            border-color: #6161FF;
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #6161FF 0%, #97AEFF 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        .card h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #ccc;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .goal-item {
+            background: #1a1a2a;
+            border-left: 4px solid #6161FF;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .goal-item h3 {
+            color: #fff;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .goal-item p {
+            color: #ccc;
+            margin-bottom: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #333;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .timeline-badge {
+            min-width: 120px;
+            background: #6161FF;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            height: fit-content;
+        }
+
+        .timeline-content h3 {
+            color: #fff;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-content li {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .timeline-content li:before {
+            content: "•";
+            color: #6161FF;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #1a1a2a 0%, #2a1a3a 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #6161FF;
+        }
+
+        .highlight-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: #6161FF;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .nav-button:hover {
+            background: #4A4AE8;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .indicator-dot.active {
+            background: #6161FF;
+        }
+
+        /* Two-column layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .column h3 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .column ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .column li {
+            color: #ccc;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .column li:before {
+            content: "→";
+            color: #6161FF;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Stats/Highlights */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #6161FF 0%, #97AEFF 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 3rem 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <div class="slide-content">
+                <h1>monday.com × Anthropic</h1>
+                <p class="subtitle">Partnership Initiatives</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Introduction -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">02 / 09</div>
+                <h2>Introduction</h2>
+            </div>
+            <div class="slide-content">
+                <p style="font-size: 1.25rem; color: #ccc; margin-bottom: 2rem;">
+                    This document outlines our shared objectives and direction for collaborating with Claude. The focus is on <strong style="color: #6161FF;">customer value</strong>: helping teams who already use Claude adopt monday.com as their system to connect, structure, and run work - with Claude as an intelligence layer that supports planning and execution inside monday.com.
+                </p>
+                <div class="highlight-box">
+                    <h3>Core Partnership Vision</h3>
+                    <p><strong>monday.com</strong> becomes the work management platform for Claude users</p>
+                    <p><strong>Claude</strong> becomes the intelligence layer that powers planning and execution inside monday.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Goals -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">03 / 09</div>
+                <h2>Partnership Goals</h2>
+            </div>
+            <div class="slide-content">
+                <div class="goal-item">
+                    <h3>Promote monday.com as the work management platform for Claude users</h3>
+                    <p>Position monday.com as the place where Claude-powered teams organize, connect, and execute work.</p>
+                </div>
+                <div class="goal-item">
+                    <h3>Promote Claude as a tool for monday.com customers</h3>
+                    <p>Show how monday.com users can use Claude to move faster and make better decisions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Marketing - Big Moments -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">04 / 09</div>
+                <h2>Marketing Initiatives</h2>
+            </div>
+            <div class="slide-content">
+                <h3 style="color: #6161FF; margin-bottom: 1.5rem;">"Big Moments" (2× per year)</h3>
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C13.1 2 14 2.9 14 4V12C14 13.1 13.1 14 12 14C10.9 14 10 13.1 10 12V4C10 2.9 10.9 2 12 2Z" fill="currentColor"/>
+                                <path d="M19 10V12C19 15.9 15.9 19 12 19C8.1 19 5 15.9 5 12V10H7V12C7 14.8 9.2 17 12 17C14.8 17 17 14.8 17 12V10H19Z" fill="currentColor"/>
+                                <path d="M12 20V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Keynote + Live Demo</h3>
+                        <p>Presentations at Elevate and Builder Summit with joint demonstrations</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 6H20V8H4V6Z" fill="currentColor"/>
+                                <path d="M4 10H20V12H4V10Z" fill="currentColor"/>
+                                <path d="M4 14H16V16H4V14Z" fill="currentColor"/>
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <h3>Joint PR</h3>
+                        <p>Executive interviews + analyst briefings to amplify partnership</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Coordinated Email</h3>
+                        <p>Joint email sends from both companies to shared audiences</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 10L21 7V17L15 14V10Z" fill="currentColor"/>
+                                <path d="M3 7V17C3 18.1 3.9 19 5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M3 7L12 12L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Video Assets</h3>
+                        <p>Joint video content + paid amplification across YouTube/LinkedIn/Facebook + event booths</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 3H21C22.1 3 23 3.9 23 5V19C23 20.1 22.1 21 21 21H3C1.9 21 1 20.1 1 19V5C1 3.9 1.9 3 3 3Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M8 8H16V10H8V8Z" fill="currentColor"/>
+                                <path d="M8 12H16V14H8V12Z" fill="currentColor"/>
+                                <path d="M8 16H12V18H8V16Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>Executive Events</h3>
+                        <p>Executive dinners and roundtables for key stakeholders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Marketing - Monthly Cadence -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">05 / 09</div>
+                <h2>Marketing - Monthly Cadence</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Social Amplification</h3>
+                        <p>Regular social posts by monday.com + Anthropic leaders/channels</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M2 12H22" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2C15.3 5.3 17.5 8.5 18.5 12C17.5 15.5 15.3 18.7 12 22C8.7 18.7 6.5 15.5 5.5 12C6.5 8.5 8.7 5.3 12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <h3>Joint Webinar Series</h3>
+                        <p>Shared registration + agreed lead ownership</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Co-authored Content</h3>
+                        <p>Joint blog posts and thought leadership pieces</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L12 2L19 13H5Z" fill="currentColor"/>
+                                <path d="M5 13H19V22H5V13Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>Product Launches</h3>
+                        <p>Guaranteed visibility in Anthropic launches and monday.com announcements</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Partnership Pages</h3>
+                        <p>Dedicated partnership page + joint case study on both websites</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>AIO Ranking</h3>
+                        <p>Consultancy for monday.com on Claude capabilities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Demand Gen & Ownership -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">06 / 09</div>
+                <h2>Demand Gen & Ownership</h2>
+            </div>
+            <div class="slide-content">
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Quarterly Targets</h3>
+                        <ul>
+                            <li>Leads influenced</li>
+                            <li>Meetings booked</li>
+                            <li>Opportunities sourced</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; color: #ccc;">Review results together quarterly</p>
+                    </div>
+                    <div class="column">
+                        <h3>Working Cadence</h3>
+                        <ul>
+                            <li>Bi-weekly working sessions</li>
+                            <li>Regular performance reviews</li>
+                            <li>Continuous optimization</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; color: #ccc;">Maintain consistent collaboration rhythm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: GTM -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">07 / 09</div>
+                <h2>Go-to-Market Strategy</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 3H21C22.1 3 23 3.9 23 5V19C23 20.1 22.1 21 21 21H3C1.9 21 1 20.1 1 19V5C1 3.9 1.9 3 3 3Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M8 8H16V10H8V8Z" fill="currentColor"/>
+                                <path d="M8 12H16V14H8V12Z" fill="currentColor"/>
+                                <path d="M8 16H12V18H8V16Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>Marketplace Integration</h3>
+                        <p>Claude Marketplace | Claude by Anthropic<br>Monday marketplace integration</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 21V19C17 17.9 16.1 17 15 17H5C3.9 17 3 17.9 3 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M9 11C11.2 11 13 9.2 13 7C13 4.8 11.2 3 9 3C6.8 3 5 4.8 5 7C5 9.2 6.8 11 9 11Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M23 21V19C23 18.1 22.6 17.3 22 16.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M16 3.1C16.6 3.7 17 4.6 17 5.5C17 6.4 16.6 7.3 16 7.9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Two-Way Referral</h3>
+                        <p>Shared joint offering, lead gen & co-sell motion</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M5 21V7L13 2L21 7V21" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M9 9V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M15 9V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Enterprise Expansions</h3>
+                        <p>Claude adoption inside monday.com customers</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>New Logos</h3>
+                        <p>monday.com adoption inside Anthropic customers</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Developer Ecosystem</h3>
+                        <p>API credits + joint program for monday.com developers building Anthropic-powered apps</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Product -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">08 / 09</div>
+                <h2>Product Initiatives</h2>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 2V8H15V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 2H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 10V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M7 14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 18H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Early Access</h3>
+                        <p>Early access to new models + agentic capabilities</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <circle cx="9" cy="9" r="2" fill="currentColor"/>
+                                <path d="M21 15L16 10L12 14L9 11L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Claude-Powered Agents</h3>
+                        <p>Claude-powered agents in monday.com marketplace</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15C21 16.1 20.1 17 19 17H7L3 21V5C3 3.9 3.9 3 5 3H19C20.1 3 21 3.9 21 5V15Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M8 9H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 13H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Claude Chat Integration</h3>
+                        <p>Claude chat inside monday.com (Sidekick alternative)</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 4V10H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23 20V14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20.49 9C19.81 7.37 18.64 6.01 17.15 5.1C15.66 4.19 13.92 3.78 12.15 3.93C10.38 4.08 8.72 4.78 7.4 5.93L1 10M23 14L16.6 18.07C15.28 19.22 13.62 19.92 11.85 20.07C10.08 20.22 8.34 19.81 6.85 18.9C5.36 18 4.19 16.63 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Bidirectional Integration</h3>
+                        <p>Ability to interact with monday.com directly from Claude</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 7H4C2.9 7 2 7.9 2 9V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V9C22 7.9 21.1 7 20 7Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M16 21V17C16 15.9 15.1 15 14 15H10C8.9 15 8 15.9 8 17V21" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M12 11C13.1 11 14 10.1 14 9C14 7.9 13.1 7 12 7C10.9 7 10 7.9 10 9C10 10.1 10.9 11 12 11Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M8 5V3C8 2.4 8.4 2 9 2H15C15.6 2 16 2.4 16 3V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Default Work OS</h3>
+                        <p>monday.com as the default Work OS in Cowork</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M5 21V7L13 2L21 7V21" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M9 9V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M15 9V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <h3>Enterprise Offering</h3>
+                        <p>Governance + orchestration for running agents across the organization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Cadence & Governance -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-number">09 / 09</div>
+                <h2>Cadence & Governance</h2>
+            </div>
+            <div class="slide-content">
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Quarterly EBCs</h3>
+                        <ul>
+                            <li>Executive Business Reviews</li>
+                            <li>London & New York locations</li>
+                            <li>Strategic alignment sessions</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Joint Working Teams</h3>
+                        <ul>
+                            <li>Product collaboration</li>
+                            <li>Marketing coordination</li>
+                            <li>GTM alignment</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <h3>Partnership Success Metrics</h3>
+                    <p><strong>Customer Value:</strong> Teams using Claude adopt monday.com as their work management system</p>
+                    <p><strong>Intelligence Layer:</strong> Claude powers planning and execution inside monday.com</p>
+                    <p><strong>Exponential Execution:</strong> Combined platform scales business impact and expands what teams can deliver</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" id="indicators"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Create indicators
+        const indicatorsContainer = document.getElementById('indicators');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'indicator-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            indicatorsContainer.appendChild(dot);
+        }
+
+        function showSlide(n) {
+            if (n >= totalSlides) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = n;
+            }
+
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+
+            // Update indicators
+            document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
