@@ -358,6 +358,7 @@
             border-radius: 12px;
             padding: 2rem;
             margin-top: 2rem;
+            margin-bottom: 5rem;
             border-left: 4px solid #6161FF;
         }
 
@@ -412,9 +413,34 @@
             display: block;
         }
 
-        /* Minimal space above sidekick logo only */
+        .agents-logo {
+            height: 60px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Padding above Sidekick logo (first section) */
         #sidekick .container {
+            padding-top: 5rem;
+        }
+
+        /* No padding above Vibe (second section) */
+        #vibe .container {
             padding-top: 0;
+        }
+        /* No padding above Agents (same as Vibe) */
+        #agents .container {
+            padding-top: 0;
+        }
+        #sidekick {
+            margin-bottom: 0;
+        }
+        #vibe {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        #agents {
+            margin-top: 0;
         }
 
         /* Sidekick Specific Styles */
@@ -553,7 +579,11 @@
             }
 
             .sidekick-logo {
-                height: 36px;
+                height: 38px;
+            }
+
+            .agents-logo {
+                height: 45px;
             }
         }
     </style>
@@ -568,8 +598,9 @@
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="#vibe">monday vibe</a></li>
                 <li><a href="#sidekick">monday sidekick</a></li>
+                <li><a href="#vibe">monday vibe</a></li>
+                <li><a href="#agents">monday agents</a></li>
             </ul>
         </nav>
     </header>
@@ -579,6 +610,50 @@
         <div class="hero-content">
             <h1>monday AI pricing</h1>
             <p>Choose the plan that scales with your team's needs</p>
+        </div>
+    </section>
+
+    <!-- monday sidekick Pricing -->
+    <section id="sidekick" class="product-section" style="background: #f8f9fa; padding: 0 0 5rem 0;">
+        <div class="container">
+            <div class="product-header">
+                <div>
+                    <img src="monday-sidekick-logo-new.png" alt="monday sidekick" class="sidekick-logo">
+                    <p class="section-subtitle" style="text-align: left; margin-bottom: 0;">Your built-in AI assistant that thinks, recommends, and runs work for you</p>
+                </div>
+            </div>
+
+            <div class="sidekick-tiers">
+                <!-- Sidekick Lite -->
+                <div class="tier-card">
+                    <div class="tier-name">Sidekick Lite</div>
+                    <div class="tier-badge">Included with Standard & Pro</div>
+                    <div class="tier-price">Free</div>
+                    <ul class="tier-features">
+                        <li>Up to 5 messages or actions per user per day</li>
+                        <li>Works within a single workspace at a time</li>
+                        <li>Interact only with boards and assets from current workspace</li>
+                        <li>Daily usage allowance resets every day</li>
+                    </ul>
+                </div>
+
+                <!-- Sidekick Plus -->
+                <div class="tier-card plus">
+                    <div class="tier-name">Sidekick Plus</div>
+                    <div class="tier-badge plus">Free for Enterprise • Available for Standard & Pro</div>
+                    <div class="tier-price">$10 per seat per month</div>
+                    <ul class="tier-features">
+                        <li>Up to 100 messages per user per day</li>
+                        <li>Up to 2 generated images or videos per day</li>
+                        <li>Account-wide context access</li>
+                        <li>Reference and act on work across your entire account</li>
+                        <li>High limits designed for everyday workflows</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #DED4FC;">
+                        <p style="color: #666; font-size: 0.875rem;"><strong>Note:</strong> The Basic plan does not support purchasing Sidekick Plus</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -659,45 +734,19 @@
         </div>
     </section>
 
-    <!-- monday sidekick Pricing -->
-    <section id="sidekick" class="product-section" style="background: #f8f9fa; padding: 0 0 5rem 0;">
+    <!-- monday agents -->
+    <section id="agents" class="product-section" style="background: #f8f9fa;">
         <div class="container">
             <div class="product-header">
                 <div>
-                    <img src="monday-sidekick-logo-new.png" alt="monday sidekick" class="sidekick-logo">
-                    <p class="section-subtitle" style="text-align: left; margin-bottom: 0;">Your built-in AI assistant that thinks, recommends, and runs work for you</p>
+                    <img src="monday-agents-logo.png" alt="monday agents" class="agents-logo">
+                    <p class="section-subtitle" style="text-align: left; margin-bottom: 0;">An unlimited workforce that amplifies your team's impact.</p>
                 </div>
             </div>
 
-            <div class="sidekick-tiers">
-                <!-- Sidekick Lite -->
-                <div class="tier-card">
-                    <div class="tier-name">Sidekick Lite</div>
-                    <div class="tier-badge">Included with Standard & Pro</div>
-                    <div class="tier-price">Free</div>
-                    <ul class="tier-features">
-                        <li>Up to 5 messages or actions per user per day</li>
-                        <li>Works within a single workspace at a time</li>
-                        <li>Interact only with boards and assets from current workspace</li>
-                        <li>Daily usage allowance resets every day</li>
-                    </ul>
-                </div>
-
-                <!-- Sidekick Plus -->
-                <div class="tier-card plus">
-                    <div class="tier-name">Sidekick Plus</div>
-                    <div class="tier-badge plus">Free for Enterprise • Available for Standard & Pro</div>
-                    <div class="tier-price">$10 per seat per month</div>
-                    <ul class="tier-features">
-                        <li>Up to 100 messages per user per day</li>
-                        <li>Up to 2 generated images or videos per day</li>
-                        <li>Account-wide context access</li>
-                        <li>Reference and act on work across your entire account</li>
-                        <li>High limits designed for everyday workflows</li>
-                    </ul>
-                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #DED4FC;">
-                        <p style="color: #666; font-size: 0.875rem;"><strong>Note:</strong> The Basic plan does not support purchasing Sidekick Plus</p>
-                    </div>
+            <div class="pricing-grid">
+                <div class="pricing-card custom" style="text-align: left;">
+                    <div class="plan-name">Coming soon...</div>
                 </div>
             </div>
         </div>
