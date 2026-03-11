@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: monday-pricing
+    env: static
+    buildCommand: ""
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /pricing.html
