@@ -27,16 +27,65 @@
         header {
             background: #000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 1rem 0;
+            padding: 0;
+        }
+
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .header-text h1 {
+            font-size: 3.6rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            /* Gradient from monday vibe logo colors (pink to orange) */
+            background: linear-gradient(135deg, #FF6B9D 0%, #FF8E53 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .header-text .header-subtitle {
+            font-size: 1.25rem;
+            color: white;
+            opacity: 0.95;
+            margin: 0;
+        }
+
+        .header-visual {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .header-visual img {
+            max-width: 100%;
+            max-height: 280px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
         }
 
         nav {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -212,7 +261,6 @@
 
         .pricing-card.featured {
             border-color: #6161FF;
-            transform: scale(1.05);
         }
 
         .pricing-card.featured::before {
@@ -256,6 +304,17 @@
             margin-bottom: 0.5rem;
         }
 
+        .plan-badge {
+            display: inline-block;
+            background: #DED4FC;
+            color: #6161FF;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
         .plan-description {
             color: #666;
             font-size: 1rem;
@@ -270,7 +329,7 @@
         .price-amount {
             font-size: 3rem;
             font-weight: 700;
-            color: #6161FF;
+            color: #000;
             line-height: 1;
         }
 
@@ -283,14 +342,14 @@
         .price-free {
             font-size: 3rem;
             font-weight: 700;
-            color: #6161FF;
+            color: #000;
             line-height: 1;
         }
 
         .price-custom {
             font-size: 3rem;
             font-weight: 700;
-            color: #2E19AA;
+            color: #000;
             line-height: 1;
         }
 
@@ -321,12 +380,13 @@
             color: white;
             padding: 1rem 2rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 24px;
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: background 0.3s, transform 0.2s;
+            text-decoration: none;
         }
 
         .plan-button:hover {
@@ -338,6 +398,8 @@
             background: white;
             color: #6161FF;
             border: 2px solid #6161FF;
+            border-radius: 24px;
+            text-decoration: none;
         }
 
         .plan-button.secondary:hover {
@@ -346,10 +408,22 @@
 
         .plan-button.custom-btn {
             background: #2E19AA;
+            border-radius: 24px;
+            text-decoration: none;
         }
 
         .plan-button.custom-btn:hover {
             background: #1E0F7A;
+        }
+
+        .section-cta-wrap {
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        #sidekick .section-cta-wrap {
+            margin-top: 5rem;
         }
 
         /* Info Box */
@@ -428,9 +502,8 @@
         #vibe .container {
             padding-top: 0;
         }
-        /* No padding above Agents (same as Vibe) */
         #agents .container {
-            padding-top: 0;
+            padding-top: 3rem;
         }
         #sidekick {
             margin-bottom: 0;
@@ -438,6 +511,7 @@
         #vibe {
             margin-top: 0;
             margin-bottom: 0;
+            padding-top: 0;
         }
         #agents {
             margin-top: 0;
@@ -489,7 +563,7 @@
         .tier-price {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #6161FF;
+            color: #000;
             margin-bottom: 1.5rem;
         }
 
@@ -542,16 +616,27 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
+            .header-main {
+                flex-direction: column;
+                padding: 2rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .header-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-visual {
+                max-width: 100%;
+                justify-content: center;
+            }
+
+            .header-visual img {
+                max-height: 200px;
             }
 
             .section-title {
                 font-size: 2rem;
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
             }
 
             .nav-links {
@@ -597,24 +682,20 @@
                     <img src="monday_logo.png" alt="monday.com" style="height: 25.6px; width: auto; display: block; object-fit: contain;">
                 </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#sidekick">monday sidekick</a></li>
-                <li><a href="#vibe">monday vibe</a></li>
-                <li><a href="#agents">monday agents</a></li>
-            </ul>
         </nav>
+        <div class="header-main">
+            <div class="header-text">
+                <h1>The best AI work platform</h1>
+                <p class="header-subtitle">Explore monday AI packages and pricing</p>
+            </div>
+            <div class="header-visual">
+                <img src="header-image.png" alt="">
+            </div>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>monday AI pricing</h1>
-            <p>Choose the plan that scales with your team's needs</p>
-        </div>
-    </section>
-
     <!-- monday sidekick Pricing -->
-    <section id="sidekick" class="product-section" style="background: #f8f9fa; padding: 0 0 5rem 0;">
+    <section id="sidekick" class="product-section" style="background: #f8f9fa; padding: 0 0 2.5rem 0;">
         <div class="container">
             <div class="product-header">
                 <div>
@@ -627,7 +708,7 @@
                 <!-- Sidekick Lite -->
                 <div class="tier-card">
                     <div class="tier-name">Sidekick Lite</div>
-                    <div class="tier-badge">Included with Standard & Pro</div>
+                    <div class="tier-badge">Available for Standard & Pro</div>
                     <div class="tier-price">Free</div>
                     <ul class="tier-features">
                         <li>Up to 5 messages or actions per user per day</li>
@@ -640,7 +721,7 @@
                 <!-- Sidekick Plus -->
                 <div class="tier-card plus">
                     <div class="tier-name">Sidekick Plus</div>
-                    <div class="tier-badge plus">Free for Enterprise • Available for Standard & Pro</div>
+                    <div class="tier-badge">Free for Enterprise • Available for Standard & Pro</div>
                     <div class="tier-price">$10 per seat per month</div>
                     <ul class="tier-features">
                         <li>Up to 100 messages per user per day</li>
@@ -653,6 +734,9 @@
                         <p style="color: #666; font-size: 0.875rem;"><strong>Note:</strong> The Basic plan does not support purchasing Sidekick Plus</p>
                     </div>
                 </div>
+            </div>
+            <div class="section-cta-wrap">
+                <a href="https://www.monday.com/" class="plan-button">Get started</a>
             </div>
         </div>
     </section>
@@ -671,6 +755,7 @@
                 <!-- Free Plan -->
                 <div class="pricing-card free">
                     <div class="plan-name">Free</div>
+                    <div class="plan-badge">Available for all plans</div>
                     <div class="plan-description">Experiment with building apps and testing ideas</div>
                     <ul class="plan-features">
                         <li>Build and test apps</li>
@@ -682,6 +767,7 @@
                 <!-- Starter Plan -->
                 <div class="pricing-card">
                     <div class="plan-name">Starter</div>
+                    <div class="plan-badge">Available for Standard & Pro</div>
                     <div class="plan-description">Perfect for small teams getting started</div>
                     <div class="plan-price">
                         <div class="price-amount">$100</div>
@@ -698,6 +784,7 @@
                 <!-- Growth Plan -->
                 <div class="pricing-card featured">
                     <div class="plan-name">Growth</div>
+                    <div class="plan-badge">Available for all plans</div>
                     <div class="plan-description">Scale your app building across teams</div>
                     <div class="plan-price">
                         <div class="price-amount">$250</div>
@@ -730,6 +817,9 @@
                 <p>You can also use advanced AI features within Vibe including integrations and automations by consuming AI credits.</p>
                 <p><strong>Vibe apps will consume 8 credits per AI action.</strong></p>
                 <p><strong>8 credits = $0.08</strong></p>
+            </div>
+            <div class="section-cta-wrap">
+                <a href="https://www.monday.com/vibe" class="plan-button">Get started</a>
             </div>
         </div>
     </section>
